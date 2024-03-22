@@ -1,5 +1,7 @@
 package Retos1;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**Escribe una función que reciba dos palabras (String) y retorne
@@ -23,13 +25,14 @@ public class Anagrama {
         // 2-PEDIR AL USER LA SEGUNDA PALABRA
         String p2 = solicitarPalabra(entrada, "segunda");
         
-        System.out.println("Palabras válidas: " + p1 + ", " + p2);
+        System.out.println("Palabras válidas! : " + p1 + ", " + p2);
         
-        
+        //RESULTADO BOOLEAN AL LLAMAR AL METODO validarAna Y COMPARAR :
+        boolean esAnag = validarAnag(p1, p2);
+        System.out.println("¿Las palabras " + p1 + " y " + p2 + " son anagramas?: " + esAnag);
         
     }
 // ********** METODO PUBLIC PARA PEDIR AL USER LA PALABRA Y VALIDAR *********
-	
 	/**
 	 * Metodo para solicitar una palabra al usuario (no acepte números o símbolos)
 	 * @param entrada Un objeto de tipo Scanner para recibir la entrada del usuario
@@ -54,15 +57,24 @@ public class Anagrama {
         }
         return palabra;
     }
-    
 // ******** METODO PARA VALIDAR SI LAS PALABRAS RECIBIDAS SON ANAGRAMAS***************
+    /**
+     * Metodo para saber si la palabra es un Anagrama (palabra que se puede crear al reordenar 
+     * las letras de otra palabra) o no es un Anagrama
+     * @param palabra1
+     * @param palabra2
+     * @return boolean
+     */
     public static Boolean validarAnag(String palabra1, String palabra2) {
-    	
-		return null;
-    	
+    	//NECESITO ORDENARLAS; POR ESO TRANSFORMO LAS PALABRAS EN ARRAYS DE CARACTERES
+    	//toCharArray: CONVIERTE CADA PALABRA EN UN ARRAY DE CARACTERES y ASI SE PUEDE COMPARAR LAS LETARS
+    	char[] p1Array = palabra1.toLowerCase().toCharArray();
+    	char[] p2Array = palabra2.toLowerCase().toCharArray();
+    	//ORDENAR CADA ARRAY NUEVO DE CARACTERES:
+    	Arrays.sort(p1Array);
+    	Arrays.sort(p2Array);
+    	//RETORNA LA COMPARACIÓN DE ARRAYS DE CARACTERES (CON equals PARA SABER SI SON IGUALES):
+		return Arrays.equals(p1Array, p2Array);
+		
     }
-		
-		
-	
-	
 }
